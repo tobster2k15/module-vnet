@@ -5,7 +5,6 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = var.resource_group_name
   bgp_community       = var.bgp_community
   dns_servers         = var.dns_servers
-  tags                = local.common_tags
 
   dynamic "ddos_protection_plan" {
     for_each = var.ddos_protection_plan != null ? [var.ddos_protection_plan] : []

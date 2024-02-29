@@ -6,7 +6,6 @@ resource "azurerm_virtual_network" "vnet" {
   bgp_community       = var.bgp_community
   dns_servers         = var.dns_servers
   tags                = var.tags
-  ignore_changes      = [tags]
 
   dynamic "ddos_protection_plan" {
     for_each = var.ddos_protection_plan != null ? [var.ddos_protection_plan] : []

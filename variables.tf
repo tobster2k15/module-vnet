@@ -129,7 +129,7 @@ variable "vnet_name" {
 }
 
 variable "pip_name" {
-  type        = string
-  default     = "acctpip"
+  type        = list(string)
+  default     = ["pip1", "pip2", "pip3"]
   description = "Name of the public IP to create"
 }

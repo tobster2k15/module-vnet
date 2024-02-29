@@ -57,6 +57,13 @@ variable "route_tables_ids" {
   description = "A map of subnet name to Route table ids"
 }
 
+variable "pip_ids" {
+  type = map(string)
+  default = {
+  }
+  description = "A map of public IPs"
+}
+
 variable "subnet_delegation" {
   type        = map(map(any))
   default     = {}

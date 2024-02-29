@@ -32,3 +32,8 @@ output "vnet_subnets_name_id" {
   description = "Can be queried subnet-id by subnet name by using lookup(module.vnet.vnet_subnets_name_id, subnet1)"
   value       = local.azurerm_subnets_name_id_map
 }
+
+output "pip_name_id_map" {
+  description = "Can be queried subnet-id by subnet name by using lookup(module.vnet.vnet_subnets_name_id, subnet1)"
+  value       = local.azurerm_pip_name_id_map
+}

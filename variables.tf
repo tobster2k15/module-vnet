@@ -126,8 +126,38 @@ variable "vnet_name" {
   description = "Name of the vnet to create"
 }
 
-variable "pip_name" {
+variable "public_ip_names" {
   type        = list(string)
   default     = ["pip1", "pip2", "pip3"]
   description = "Name of the public IP to create"
+}
+
+variable "spoke_to_hub" {
+  type        = string
+  default     = "spoke_to_hub"
+  description = "Name of the peering connection"
+}
+
+variable "hub_to_spoke" {
+  type        = string
+  default     = "hub_to_spoke"
+  description = "Name of the peering connection"
+}
+
+variable "hub_vnet_id" {
+  type        = string
+  description = "The id of the hub vnet"
+  default     = null
+}
+
+variable "hub_vnet_rg"{
+  type        = string
+  description = "The resource group of the hub vnet"
+  default     = null
+}
+
+variable "hub_vnet_provider"{
+  type        = string
+  description = "The provider of the hub vnet"
+  default     = null
 }

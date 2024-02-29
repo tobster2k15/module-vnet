@@ -53,8 +53,8 @@ resource "azurerm_subnet" "subnet_for_each" {
   name                                           = each.value
   resource_group_name                            = var.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.vnet.name
-  private_endpoint_network_policies_enabled = lookup(var.subnet_private_endpoint_network_policies_enabled, each.value, false)
-  private_link_service_network_policies_enabled = lookup(var.subnet_enforce_private_link_service_network_policies, each.value, false)
+  private_endpoint_network_policies_enabled      = lookup(var.subnet_private_endpoint_network_policies_enabled, each.value, false)
+  private_link_service_network_policies_enabled  = lookup(var.subnet_enforce_private_link_service_network_policies, each.value, false)
   service_endpoints                              = lookup(var.subnet_service_endpoints, each.value, null)
 
   dynamic "delegation" {
@@ -97,7 +97,7 @@ resource "azurerm_public_ip" "pip" {
   for_each = var.pip_ids
 
   location                = var.vnet_location
-  name                    = each.key
+  name                    = var.pip_name[each.key]
   resource_group_name     = var.resource_group_name
   allocation_method       = "Static"
 }

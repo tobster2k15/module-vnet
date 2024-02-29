@@ -5,7 +5,6 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = var.resource_group_name
   bgp_community       = var.bgp_community
   dns_servers         = var.dns_servers
-  tags                = local.common_tags
 
   dynamic "ddos_protection_plan" {
     for_each = var.ddos_protection_plan != null ? [var.ddos_protection_plan] : []
@@ -29,8 +28,8 @@ resource "azurerm_subnet" "subnet_count" {
   name                                           = var.subnet_names[count.index]
   resource_group_name                            = var.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.vnet.name
-  enforce_private_link_endpoint_network_policies = lookup(var.subnet_enforce_private_link_endpoint_network_policies, var.subnet_names[count.index], false)
-  enforce_private_link_service_network_policies  = lookup(var.subnet_enforce_private_link_service_network_policies, var.subnet_names[count.index], false)
+  private_endpoint_network_policies_enabled = lookup(var.subnet_private_endpoint_network_policies_enabled, var.subnet_names[count.index], false)
+  private_link_service_network_policies_enabled = lookup(var.subnet_enforce_private_link_service_network_policies, var.subnet_names[count.index], false)
   service_endpoints                              = lookup(var.subnet_service_endpoints, var.subnet_names[count.index], null)
 
   dynamic "delegation" {
@@ -54,8 +53,8 @@ resource "azurerm_subnet" "subnet_for_each" {
   name                                           = each.value
   resource_group_name                            = var.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.vnet.name
-  enforce_private_link_endpoint_network_policies = lookup(var.subnet_enforce_private_link_endpoint_network_policies, each.value, false)
-  enforce_private_link_service_network_policies  = lookup(var.subnet_enforce_private_link_service_network_policies, each.value, false)
+  private_endpoint_network_policies_enabled = lookup(var.subnet_private_endpoint_network_policies_enabled, each.value, false)
+  private_link_service_network_policies_enabled = lookup(var.subnet_enforce_private_link_service_network_policies, each.value, false)
   service_endpoints                              = lookup(var.subnet_service_endpoints, each.value, null)
 
   dynamic "delegation" {
@@ -92,13 +91,4 @@ resource "azurerm_subnet_route_table_association" "vnet" {
 
   route_table_id = each.value
   subnet_id      = local.azurerm_subnets_name_id_map[each.key]
-}
-
-resource "azurerm_public_ip" "pip" {
-  for_each = var.pip_ids
-
-  name                = each.key
-  location            = var.vnet_location
-  resource_group_name = var.resource_group_name
-  allocation_method   = "Static"
 }

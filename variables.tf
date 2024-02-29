@@ -46,8 +46,7 @@ variable "dns_servers" {
 
 variable "nsg_ids" {
   type = map(string)
-  default = {
-  }
+  default = {}
   description = "A map of subnet name to Network Security Group IDs"
 }
 
@@ -57,12 +56,11 @@ variable "route_tables_ids" {
   description = "A map of subnet name to Route table ids"
 }
 
-variable "pip_ids" {
-  type = map(string)
-  default = {
-  }
-  description = "A map of public IPs"
-}
+# variable "public_ip_ids" {
+#   type = map(string)
+#   default = {}
+#   description = "A map of public IPs"
+# }
 
 variable "subnet_delegation" {
   type        = map(map(any))

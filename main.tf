@@ -94,10 +94,10 @@ resource "azurerm_subnet_route_table_association" "vnet" {
 }
 
 resource "azurerm_public_ip" "pip" {
-  for_each = var.pip_ids
+  for_each = var.use_for_each ? toset(var.pip_name) : []
 
+  name                    = each.value
   location                = var.vnet_location
-  name                    = var.pip_name
   resource_group_name     = var.resource_group_name
   allocation_method       = "Static"
 }

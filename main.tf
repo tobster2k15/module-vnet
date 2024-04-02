@@ -1,3 +1,9 @@
+resource "azurerm_resource_group" "myvnet_rg" {
+  name     = var.resource_group_name
+  location = var.vnet_location
+  tags     = var.tags
+}
+
 resource "azurerm_virtual_network" "vnet" {
   address_space       = var.address_space
   location            = var.vnet_location
@@ -27,7 +33,7 @@ resource "azurerm_subnet" "subnet_count" {
 
   address_prefixes                               = [var.subnet_prefixes[count.index]]
   name                                           = var.subnet_names[count.index]
-  resource_group_name                            = var.resource_group_name
+  resource_group_name                            = azurerm_resource_group.myvnet_rg.name
   virtual_network_name                           = azurerm_virtual_network.vnet.name
   private_endpoint_network_policies_enabled      = lookup(var.subnet_private_endpoint_network_policies_enabled, var.subnet_names[count.index], false)
   private_link_service_network_policies_enabled  = lookup(var.subnet_enforce_private_link_service_network_policies, var.subnet_names[count.index], false)

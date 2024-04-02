@@ -132,32 +132,14 @@ variable "public_ip_names" {
   description = "Name of the public IP to create"
 }
 
-variable "spoke_to_hub" {
+variable "resource_group_name" {
   type        = string
-  default     = "spoke_to_hub"
-  description = "Name of the peering connection"
+  description = "Name of the resource group to be imported."
+  nullable    = false
 }
 
-variable "hub_to_spoke" {
+variable "vnet_location" {
   type        = string
-  default     = "hub_to_spoke"
-  description = "Name of the peering connection"
-}
-
-variable "hub_vnet_id" {
-  type        = string
-  description = "The id of the hub vnet"
-  default     = null
-}
-
-variable "hub_vnet_rg"{
-  type        = string
-  description = "The resource group of the hub vnet"
-  default     = null
-}
-
-variable "hub_vnet_provider"{
-  type        = string
-  description = "The provider of the hub vnet"
-  default     = null
+  description = "The location of the vnet to create."
+  nullable    = false
 }

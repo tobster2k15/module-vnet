@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "myvnet_rg" {
 
 resource "azurerm_virtual_network" "vnet" {
   address_space       = var.address_space
-  location            = var.vnet_location
+  location            = var.location
   name                = var.vnet_name
   resource_group_name = azurerm_resource_group.myvnet_rg.name
   bgp_community       = var.bgp_community

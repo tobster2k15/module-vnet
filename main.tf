@@ -8,7 +8,7 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = var.address_space
   location            = var.vnet_location
   name                = var.vnet_name
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.myvnet_rg.name
   bgp_community       = var.bgp_community
   dns_servers         = var.dns_servers
   tags                = var.tags
@@ -58,7 +58,7 @@ resource "azurerm_subnet" "subnet_for_each" {
 
   address_prefixes                               = [local.subnet_names_prefixes[each.value]]
   name                                           = each.value
-  resource_group_name                            = var.resource_group_name
+  resource_group_name                            = azurerm_resource_group.myvnet_rg.name
   virtual_network_name                           = azurerm_virtual_network.vnet.name
   private_endpoint_network_policies_enabled      = lookup(var.subnet_private_endpoint_network_policies_enabled, each.value, false)
   private_link_service_network_policies_enabled  = lookup(var.subnet_enforce_private_link_service_network_policies, each.value, false)
@@ -97,6 +97,6 @@ resource "azurerm_public_ip" "pip" {
 
   name                    = each.value
   location                = var.vnet_location
-  resource_group_name     = var.resource_group_name
+  resource_group_name     = azurerm_resource_group.myvnet_rg.name
   allocation_method       = "Static"
 }

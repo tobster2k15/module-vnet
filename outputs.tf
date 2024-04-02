@@ -15,7 +15,7 @@ output "vnet_id" {
 
 output "vnet_rg_name" {
   description = "The Name of the newly created vNet"
-  value       = azurerm_resource_group.myvnet_rgvnet.name
+  value       = azurerm_resource_group.myvnet_rg.name
 }
 
 output "vnet_location" {

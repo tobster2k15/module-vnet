@@ -131,15 +131,3 @@ variable "public_ip_names" {
   default     = ["pip1", "pip2", "pip3"]
   description = "Name of the public IP to create"
 }
-
-variable "resource_group_name" {
-  type        = string
-  description = "Name of the resource group to be imported."
-  nullable    = false
-}
-
-variable "vnet_location" {
-  type        = string
-  description = "The location of the vnet to create."
-  nullable    = false
-}

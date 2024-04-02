@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "myvnet_rg" {
   name     = var.resource_group_name
-  location = var.vnet_location
+  location = var.location
   tags     = var.tags
 }
 
@@ -96,7 +96,7 @@ resource "azurerm_public_ip" "pip" {
   for_each = var.use_for_each ? toset(var.public_ip_names) : []
 
   name                    = each.value
-  location                = var.vnet_location
+  location                = var.location
   resource_group_name     = azurerm_resource_group.myvnet_rg.name
   allocation_method       = "Static"
 }

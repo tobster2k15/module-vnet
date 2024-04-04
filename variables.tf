@@ -10,11 +10,11 @@ variable "use_for_each" {
   nullable    = false
 }
 
-variable "vnet_location" {
-  type        = string
-  description = "The location of the vnet to create."
-  nullable    = false
-}
+# variable "vnet_location" {
+#   type        = string
+#   description = "The location of the vnet to create."
+#   nullable    = false
+# }
 
 variable "address_space" {
   type        = list(string)
@@ -134,6 +134,24 @@ variable "public_ip_names" {
 
 variable "location" {
   type        = string
-  default     = "westeurope"
+  nullable    = false
   description = "The location/region where the virtual network is created."
+}
+
+variable "usecase" {
+  type        = string
+  default     = ""
+  description = "The use case for the resources."
+}
+
+variable "environment" {
+  type        = string
+  default     = "prd"
+  description = "The environment for the resources."
+}
+
+variable "region" {
+  type        = string
+  default     = "we"
+  description = "The region for the resources."
 }

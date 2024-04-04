@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "myvnet_rg" {
-  name     = var.resource_group_name
+  name     = local.rg_vnet_name
   location = var.location
   tags     = var.tags
 }
@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "myvnet_rg" {
 resource "azurerm_virtual_network" "vnet" {
   address_space       = var.address_space
   location            = var.location
-  name                = var.vnet_name
+  name                = local.vnet_name
   resource_group_name = azurerm_resource_group.myvnet_rg.name
   bgp_community       = var.bgp_community
   dns_servers         = var.dns_servers

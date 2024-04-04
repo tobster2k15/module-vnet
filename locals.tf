@@ -14,3 +14,8 @@ locals{
     pip.name => pip.id
   }
 }
+
+locals{
+  rg_vnet_name        =   "rg-vnet-${var.usecase}-${var.environment}-${var.region}-001"
+  vnet_name           =   "vnet-${var.usecase}-${var.environment}-${var.region}-001"
+}

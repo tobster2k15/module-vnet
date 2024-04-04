@@ -1,8 +1,8 @@
-variable "resource_group_name" {
-  type        = string
-  description = "Name of the resource group to be imported."
-  nullable    = false
-}
+# variable "resource_group_name" {
+#   type        = string
+#   description = "Name of the resource group to be imported."
+#   defau
+# }
 
 variable "use_for_each" {
   type        = bool

@@ -1,20 +1,8 @@
-# variable "resource_group_name" {
-#   type        = string
-#   description = "Name of the resource group to be imported."
-#   defau
-# }
-
 variable "use_for_each" {
   type        = bool
   description = "Use `for_each` instead of `count` to create multiple resource instances."
   nullable    = false
 }
-
-# variable "vnet_location" {
-#   type        = string
-#   description = "The location of the vnet to create."
-#   nullable    = false
-# }
 
 variable "address_space" {
   type        = list(string)
